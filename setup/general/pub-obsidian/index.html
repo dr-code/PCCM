@@ -357,6 +357,11 @@ Callouts
 </a>
 </li>
 <li class="md-nav__item">
+<a href="#comments" class="md-nav__link">
+Comments
+</a>
+</li>
+<li class="md-nav__item">
 <a href="#links" class="md-nav__link">
 Links
 </a>
@@ -717,6 +722,11 @@ Backlinks
 <li class="md-nav__item">
 <a href="#callouts" class="md-nav__link">
 Callouts
+</a>
+</li>
+<li class="md-nav__item">
+<a href="#comments" class="md-nav__link">
+Comments
 </a>
 </li>
 <li class="md-nav__item">
@@ -1102,6 +1112,65 @@ tabs
 .
 </p>
 </details>
+<h3 id="comments">
+Comments
+<a href="#comments" class="headerlink" title="Anchor link to this section for reference">
+¶
+</a>
+</h3>
+<div class="highlight language-yaml">
+<pre><span></span><code><span id="__span-6-1"><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="nt">plugins</span><span class="p">:</span>
+</span><span id="__span-6-2"><a href="#__codelineno-6-2" id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pub-obsidian</span><span class="p">:</span>
+</span><span id="__span-6-3"><a href="#__codelineno-6-3" id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="hll"><span class="w">    </span><span class="nt">comments</span><span class="p">:</span>
+</span></span><span id="__span-6-4"><a href="#__codelineno-6-4" id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="hll"><span class="w">      </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span></span><span id="__span-6-5"><a href="#__codelineno-6-5" id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="hll"><span class="w">      </span><span class="nt">inject_as_html</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span></span></code></pre>
+</div>
+<p>
+Above you can find all possible settings with their default values. You don't have to provide them. Just use them if you want to change some settings. The description of the meaning of given setting, you can find below.
+</p>
+<details class="settings">
+<summary>
+<a href="#+obsidian.comments.enabled" id="+obsidian.callouts.enabled">
+enabled
+</a>
+</summary>
+<p>
+Control if comments are recognized on the document web page. If disabled, comments will be visible as a normal text.
+</p>
+</details>
+<details class="settings">
+<summary>
+<a href="#+obsidian.comments.inject_as_html" id="+obsidian.callouts.indentation">
+indentation
+</a>
+</summary>
+<p>
+Defines behavior of the comments:
+</p>
+<ul>
+<li>
+<p>
+<code>
+true
+</code>
+- comments will become an
+<a href="https://www.w3schools.com/tags/tag_comment.asp">
+HTML comment
+</a>
+, so it will not be visible on the generated document, but will be visible in document HTML code.
+</p>
+</li>
+<li>
+<p>
+<code>
+false
+</code>
+(default) - comments will be completely removed and not visible either in generated document and document HTML code.
+</p>
+</li>
+</ul>
+</details>
 <h3 id="links">
 Links
 <a href="#links" class="headerlink" title="Anchor link to this section for reference">
@@ -1128,11 +1197,11 @@ mkdocs.yml
 
 </div>
 <div class="highlight language-yaml">
-<pre><span></span><code><span id="__span-6-1"><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="nt">plugins</span><span class="p">:</span>
-</span><span id="__span-6-2"><a href="#__codelineno-6-2" id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pub-obsidian</span><span class="p">:</span>
-</span><span id="__span-6-3"><a href="#__codelineno-6-3" id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="hll"><span class="w">    </span><span class="nt">links</span><span class="p">:</span>
-</span></span><span id="__span-6-4"><a href="#__codelineno-6-4" id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="hll"><span class="w">      </span><span class="nt">wikilinks_enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-</span></span><span id="__span-6-5"><a href="#__codelineno-6-5" id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="hll"><span class="w">      </span><span class="nt">img_lazy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<pre><span></span><code><span id="__span-7-1"><a href="#__codelineno-7-1" id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="nt">plugins</span><span class="p">:</span>
+</span><span id="__span-7-2"><a href="#__codelineno-7-2" id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pub-obsidian</span><span class="p">:</span>
+</span><span id="__span-7-3"><a href="#__codelineno-7-3" id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="hll"><span class="w">    </span><span class="nt">links</span><span class="p">:</span>
+</span></span><span id="__span-7-4"><a href="#__codelineno-7-4" id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="hll"><span class="w">      </span><span class="nt">wikilinks_enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span></span><span id="__span-7-5"><a href="#__codelineno-7-5" id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="hll"><span class="w">      </span><span class="nt">img_lazy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </span></span></code></pre>
 </div>
 <p>
@@ -1192,12 +1261,12 @@ mkdocs.yml
 
 </div>
 <div class="highlight language-yaml">
-<pre><span></span><code><span id="__span-7-1"><a href="#__codelineno-7-1" id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="nt">plugins</span><span class="p">:</span>
-</span><span id="__span-7-2"><a href="#__codelineno-7-2" id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pub-obsidian</span><span class="p">:</span>
-</span><span id="__span-7-3"><a href="#__codelineno-7-3" id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="hll"><span class="w">    </span><span class="nt">vega</span><span class="p">:</span>
-</span></span><span id="__span-7-4"><a href="#__codelineno-7-4" id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="hll"><span class="w">      </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-</span></span><span id="__span-7-5"><a href="#__codelineno-7-5" id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="hll"><span class="w">      </span><span class="nt">vega_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://vega.github.io/schema/vega/v5.json</span>
-</span></span><span id="__span-7-6"><a href="#__codelineno-7-6" id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="hll"><span class="w">      </span><span class="nt">vega_lite_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://vega.github.io/schema/vega-lite/v5.json</span>
+<pre><span></span><code><span id="__span-8-1"><a href="#__codelineno-8-1" id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="nt">plugins</span><span class="p">:</span>
+</span><span id="__span-8-2"><a href="#__codelineno-8-2" id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pub-obsidian</span><span class="p">:</span>
+</span><span id="__span-8-3"><a href="#__codelineno-8-3" id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="hll"><span class="w">    </span><span class="nt">vega</span><span class="p">:</span>
+</span></span><span id="__span-8-4"><a href="#__codelineno-8-4" id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="hll"><span class="w">      </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span></span><span id="__span-8-5"><a href="#__codelineno-8-5" id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="hll"><span class="w">      </span><span class="nt">vega_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://vega.github.io/schema/vega/v5.json</span>
+</span></span><span id="__span-8-6"><a href="#__codelineno-8-6" id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="hll"><span class="w">      </span><span class="nt">vega_lite_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://vega.github.io/schema/vega-lite/v5.json</span>
 </span></span></code></pre>
 </div>
 <p>
@@ -1285,6 +1354,20 @@ I will also create an entire section of the documentation related to Obsidian su
 how to set it up
 </a>
 ), so stay turned.
+</p>
+<p></p>
+</details>
+<details class="backlink">
+<summary>
+None
+</summary>
+<p>
+</p><p class="obsidian_backlink">
+The
+<a href="https://mkusz.github.io/mkdocs-publisher/blog/v120/#02-setup02-general03-setting-up-obsidian">
+obsidian
+</a>
+plugin, now supports:
 </p>
 <p></p>
 </details>

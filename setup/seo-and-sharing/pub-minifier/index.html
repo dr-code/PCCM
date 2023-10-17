@@ -824,7 +824,7 @@ Ubuntu
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>
-In MacOS, the easiest way to install any software, is to use a
+In macOS, the easiest way to install any software, is to use a
 <a href="https://brew.sh">
 Homebrew
 </a>
@@ -1331,9 +1331,11 @@ mkdocs.yml
 <div class="highlight language-yaml">
 <pre><span></span><code><span id="__span-22-1"><a href="#__codelineno-22-1" id="__codelineno-22-1" name="__codelineno-22-1"></a><span class="nt">plugins</span><span class="p">:</span>
 </span><span id="__span-22-2"><a href="#__codelineno-22-2" id="__codelineno-22-2" name="__codelineno-22-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pub-minifier</span><span class="p">:</span>
-</span><span id="__span-22-3"><a href="#__codelineno-22-3" id="__codelineno-22-3" name="__codelineno-22-3"></a><span class="hll"><span class="w">      </span><span class="nt">threads</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</span><span id="__span-22-3"><a href="#__codelineno-22-3" id="__codelineno-22-3" name="__codelineno-22-3"></a><span class="hll"><span class="w">      </span><span class="nt">cache_enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </span></span><span id="__span-22-4"><a href="#__codelineno-22-4" id="__codelineno-22-4" name="__codelineno-22-4"></a><span class="hll"><span class="w">      </span><span class="nt">cache_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.pub_min_cache</span>
 </span></span><span id="__span-22-5"><a href="#__codelineno-22-5" id="__codelineno-22-5" name="__codelineno-22-5"></a><span class="hll"><span class="w">      </span><span class="nt">cache_file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.cache_files_list.yml</span>
+</span></span><span id="__span-22-6"><a href="#__codelineno-22-6" id="__codelineno-22-6" name="__codelineno-22-6"></a><span class="hll"><span class="w">      </span><span class="nt">exclude</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+</span></span><span id="__span-22-7"><a href="#__codelineno-22-7" id="__codelineno-22-7" name="__codelineno-22-7"></a><span class="hll"><span class="w">      </span><span class="nt">threads</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
 </span></span></code></pre>
 </div>
 </div>
@@ -1358,12 +1360,12 @@ directory and the directory structure looks like this:
 </div>
 <details class="settings">
 <summary>
-<a href="#+minifier.threads" id="+minifier.threads">
-threads
+<a href="#+minifier.cache_enabled" id="+minifier.cache_enabled">
+cache_enabled
 </a>
 </summary>
 <p>
-File optimization process is a CPU intensive. Most modern computers have processors with multiple CPU cores. Each core can be used to optimize a single file. When your machine has more than one CPU core, it's good to have an ability to utilize all of them during the optimization process because it will reduce overall time needed for optimization of all files. This setting defines how many CPUs the plugin will use for file optimization process. If set to 0 (default value) the plugin will read the number of available CPUs from system settings.
+Control if caching mechanism is enabled. When it's enabled, you can still disable cache per each file type.
 </p>
 </details>
 <details class="settings">
@@ -1373,11 +1375,7 @@ cache_dir
 </a>
 </summary>
 <p>
-When
-<code>
-pub-minifier
-</code>
-plugin is enabled, caching is enabled by default and cannot be turned off. Caching is quite crucial since image optimization is quite a time-consuming process (especially for PNG files). This setting defines the directory location, where the cached files are stored.
+Defines the directory location, where the cached files are stored.
 </p>
 </details>
 <details class="settings">
@@ -1388,6 +1386,26 @@ cache_file
 </summary>
 <p>
 Defines the name of the file, where all the data needed for proper cache working is stored. When this file is missing or corrupt, it and all cached files will be recreated. This file is stored inside the cache directory, and by default, the directory structure looks like this:
+</p>
+</details>
+<details class="settings">
+<summary>
+<a href="#+minifier.exclude" id="+minifier.exclude">
+exclude
+</a>
+</summary>
+<p>
+Defines a list of exclusion patterns for files or directories that will not be minified. Each file type has its own exclusion list that inherits values from this one, so you don't have to add the same values.
+</p>
+</details>
+<details class="settings">
+<summary>
+<a href="#+minifier.threads" id="+minifier.threads">
+threads
+</a>
+</summary>
+<p>
+File optimization process is a CPU intensive. Most modern computers have processors with multiple CPU cores. Each core can be used to optimize a single file. When your machine has more than one CPU core, it's good to have an ability to utilize all of them during the optimization process because it will reduce overall time needed for optimization of all files. This setting defines how many CPUs the plugin will use for file optimization process. If set to 0 (default value) the plugin will read the number of available CPUs from system settings.
 </p>
 </details>
 <h3 id="jpeg-optimization">
@@ -1418,21 +1436,34 @@ Using this tool reduces JPEG image file size up to 30% with almost no visible qu
 <pre><span></span><code><span id="__span-24-1"><a href="#__codelineno-24-1" id="__codelineno-24-1" name="__codelineno-24-1"></a><span class="nt">plugins</span><span class="p">:</span>
 </span><span id="__span-24-2"><a href="#__codelineno-24-2" id="__codelineno-24-2" name="__codelineno-24-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pub-minifier</span><span class="p">:</span>
 </span><span id="__span-24-3"><a href="#__codelineno-24-3" id="__codelineno-24-3" name="__codelineno-24-3"></a><span class="hll"><span class="w">    </span><span class="nt">jpeg</span><span class="p">:</span>
-</span></span><span id="__span-24-4"><a href="#__codelineno-24-4" id="__codelineno-24-4" name="__codelineno-24-4"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">enabled = true</span>
-</span></span><span id="__span-24-5"><a href="#__codelineno-24-5" id="__codelineno-24-5" name="__codelineno-24-5"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">enabled_on_serve = false</span>
-</span></span><span id="__span-24-6"><a href="#__codelineno-24-6" id="__codelineno-24-6" name="__codelineno-24-6"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">djpeg_path = djpeg</span>
-</span></span><span id="__span-24-7"><a href="#__codelineno-24-7" id="__codelineno-24-7" name="__codelineno-24-7"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">cjpeg_path = cjpeg</span>
-</span></span><span id="__span-24-8"><a href="#__codelineno-24-8" id="__codelineno-24-8" name="__codelineno-24-8"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">jpegtran_path = jpegtran</span>
-</span></span><span id="__span-24-9"><a href="#__codelineno-24-9" id="__codelineno-24-9" name="__codelineno-24-9"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">optimise = true</span>
-</span></span><span id="__span-24-10"><a href="#__codelineno-24-10" id="__codelineno-24-10" name="__codelineno-24-10"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">progressive = true</span>
-</span></span><span id="__span-24-11"><a href="#__codelineno-24-11" id="__codelineno-24-11" name="__codelineno-24-11"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">copy_meta = none</span>
-</span></span><span id="__span-24-12"><a href="#__codelineno-24-12" id="__codelineno-24-12" name="__codelineno-24-12"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">smooth = 10</span>
-</span></span><span id="__span-24-13"><a href="#__codelineno-24-13" id="__codelineno-24-13" name="__codelineno-24-13"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">quality = 85</span>
+</span></span><span id="__span-24-4"><a href="#__codelineno-24-4" id="__codelineno-24-4" name="__codelineno-24-4"></a><span class="hll"><span class="w">        </span><span class="nt">cache_enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span></span><span id="__span-24-5"><a href="#__codelineno-24-5" id="__codelineno-24-5" name="__codelineno-24-5"></a><span class="hll"><span class="w">        </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span></span><span id="__span-24-6"><a href="#__codelineno-24-6" id="__codelineno-24-6" name="__codelineno-24-6"></a><span class="hll"><span class="w">        </span><span class="nt">enabled_on_serve</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span></span><span id="__span-24-7"><a href="#__codelineno-24-7" id="__codelineno-24-7" name="__codelineno-24-7"></a><span class="hll"><span class="w">        </span><span class="nt">exclude</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+</span></span><span id="__span-24-8"><a href="#__codelineno-24-8" id="__codelineno-24-8" name="__codelineno-24-8"></a><span class="hll"><span class="w">        </span><span class="nt">extensions</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">".[jJ][pP][gG]"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">".[jJ][pP][eE][gG]"</span><span class="p p-Indicator">]</span>
+</span></span><span id="__span-24-9"><a href="#__codelineno-24-9" id="__codelineno-24-9" name="__codelineno-24-9"></a><span class="hll"><span class="w">        </span><span class="nt">djpeg_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">djpeg</span>
+</span></span><span id="__span-24-10"><a href="#__codelineno-24-10" id="__codelineno-24-10" name="__codelineno-24-10"></a><span class="hll"><span class="w">        </span><span class="nt">cjpeg_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cjpeg</span>
+</span></span><span id="__span-24-11"><a href="#__codelineno-24-11" id="__codelineno-24-11" name="__codelineno-24-11"></a><span class="hll"><span class="w">        </span><span class="nt">jpegtran_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">jpegtran</span>
+</span></span><span id="__span-24-12"><a href="#__codelineno-24-12" id="__codelineno-24-12" name="__codelineno-24-12"></a><span class="hll"><span class="w">        </span><span class="nt">optimise</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span></span><span id="__span-24-13"><a href="#__codelineno-24-13" id="__codelineno-24-13" name="__codelineno-24-13"></a><span class="hll"><span class="w">        </span><span class="nt">progressive</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span></span><span id="__span-24-14"><a href="#__codelineno-24-14" id="__codelineno-24-14" name="__codelineno-24-14"></a><span class="hll"><span class="w">        </span><span class="nt">copy_meta</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">none</span>
+</span></span><span id="__span-24-15"><a href="#__codelineno-24-15" id="__codelineno-24-15" name="__codelineno-24-15"></a><span class="hll"><span class="w">        </span><span class="nt">smooth</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+</span></span><span id="__span-24-16"><a href="#__codelineno-24-16" id="__codelineno-24-16" name="__codelineno-24-16"></a><span class="hll"><span class="w">        </span><span class="nt">quality</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">85</span>
 </span></span></code></pre>
 </div>
 <p>
 Above you can find all possible settings with their default values. You don't have to provide them. Just use them if you want to change some settings. The description of the meaning of given setting, you can find below.
 </p>
+<details class="settings">
+<summary>
+<a href="#+minifier.jpeg.cache_enabled" id="+minifier.jpeg.cache_enabled">
+cache_enabled
+</a>
+</summary>
+<p>
+Control if caching mechanism is enabled.
+</p>
+</details>
 <details class="settings">
 <summary>
 <a href="#+minifier.jpeg.enabled" id="+minifier.jpeg.enabled">
@@ -1451,6 +1482,26 @@ enabled_on_serve
 </summary>
 <p>
 Control if JPEG minifier is enabled while page is being served locally (mostly used for content creation).
+</p>
+</details>
+<details class="settings">
+<summary>
+<a href="#+minifier.jpeg.exclude" id="+minifier.jpeg.exclude">
+exclude
+</a>
+</summary>
+<p>
+Defines a list of exclusion patterns for files or directories that will not be minified.
+</p>
+</details>
+<details class="settings">
+<summary>
+<a href="#+minifier.jpeg.extensions" id="+minifier.jpeg.extensions">
+exclude
+</a>
+</summary>
+<p>
+Defines a list of file extensions that will be minified.
 </p>
 </details>
 <details class="settings">
@@ -1615,21 +1666,34 @@ Using those tools together, can reduce PNG image file size by up to 70% with alm
 <pre><span></span><code><span id="__span-25-1"><a href="#__codelineno-25-1" id="__codelineno-25-1" name="__codelineno-25-1"></a><span class="nt">plugins</span><span class="p">:</span>
 </span><span id="__span-25-2"><a href="#__codelineno-25-2" id="__codelineno-25-2" name="__codelineno-25-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pub-minifier</span><span class="p">:</span>
 </span><span id="__span-25-3"><a href="#__codelineno-25-3" id="__codelineno-25-3" name="__codelineno-25-3"></a><span class="hll"><span class="w">    </span><span class="nt">png</span><span class="p">:</span>
-</span></span><span id="__span-25-4"><a href="#__codelineno-25-4" id="__codelineno-25-4" name="__codelineno-25-4"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">enabled = true</span>
-</span></span><span id="__span-25-5"><a href="#__codelineno-25-5" id="__codelineno-25-5" name="__codelineno-25-5"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">enabled_on_serve = false</span>
-</span></span><span id="__span-25-6"><a href="#__codelineno-25-6" id="__codelineno-25-6" name="__codelineno-25-6"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">pngquant_enabled = true</span>
-</span></span><span id="__span-25-7"><a href="#__codelineno-25-7" id="__codelineno-25-7" name="__codelineno-25-7"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">pngquant_path = ongquant</span>
-</span></span><span id="__span-25-8"><a href="#__codelineno-25-8" id="__codelineno-25-8" name="__codelineno-25-8"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">pngquant_speed = 1</span>
-</span></span><span id="__span-25-9"><a href="#__codelineno-25-9" id="__codelineno-25-9" name="__codelineno-25-9"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">pngquant_quality = 95</span>
-</span></span><span id="__span-25-10"><a href="#__codelineno-25-10" id="__codelineno-25-10" name="__codelineno-25-10"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">oxipng_enabled = true</span>
-</span></span><span id="__span-25-11"><a href="#__codelineno-25-11" id="__codelineno-25-11" name="__codelineno-25-11"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">oxipng_path = oxipng</span>
-</span></span><span id="__span-25-12"><a href="#__codelineno-25-12" id="__codelineno-25-12" name="__codelineno-25-12"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">oxipng_max_compression = true</span>
-</span></span><span id="__span-25-13"><a href="#__codelineno-25-13" id="__codelineno-25-13" name="__codelineno-25-13"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">strip = true</span>
+</span></span><span id="__span-25-4"><a href="#__codelineno-25-4" id="__codelineno-25-4" name="__codelineno-25-4"></a><span class="hll"><span class="w">        </span><span class="nt">cache_enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span></span><span id="__span-25-5"><a href="#__codelineno-25-5" id="__codelineno-25-5" name="__codelineno-25-5"></a><span class="hll"><span class="w">        </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span></span><span id="__span-25-6"><a href="#__codelineno-25-6" id="__codelineno-25-6" name="__codelineno-25-6"></a><span class="hll"><span class="w">        </span><span class="nt">enabled_on_serve</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span></span><span id="__span-25-7"><a href="#__codelineno-25-7" id="__codelineno-25-7" name="__codelineno-25-7"></a><span class="hll"><span class="w">        </span><span class="nt">exclude</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+</span></span><span id="__span-25-8"><a href="#__codelineno-25-8" id="__codelineno-25-8" name="__codelineno-25-8"></a><span class="hll"><span class="w">        </span><span class="nt">extensions</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">".[pP][nN][gG]"</span><span class="p p-Indicator">]</span>
+</span></span><span id="__span-25-9"><a href="#__codelineno-25-9" id="__codelineno-25-9" name="__codelineno-25-9"></a><span class="hll"><span class="w">        </span><span class="nt">pngquant_enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span></span><span id="__span-25-10"><a href="#__codelineno-25-10" id="__codelineno-25-10" name="__codelineno-25-10"></a><span class="hll"><span class="w">        </span><span class="nt">pngquant_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ongquant</span>
+</span></span><span id="__span-25-11"><a href="#__codelineno-25-11" id="__codelineno-25-11" name="__codelineno-25-11"></a><span class="hll"><span class="w">        </span><span class="nt">pngquant_speed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</span></span><span id="__span-25-12"><a href="#__codelineno-25-12" id="__codelineno-25-12" name="__codelineno-25-12"></a><span class="hll"><span class="w">        </span><span class="nt">pngquant_quality</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">95</span>
+</span></span><span id="__span-25-13"><a href="#__codelineno-25-13" id="__codelineno-25-13" name="__codelineno-25-13"></a><span class="hll"><span class="w">        </span><span class="nt">oxipng_enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span></span><span id="__span-25-14"><a href="#__codelineno-25-14" id="__codelineno-25-14" name="__codelineno-25-14"></a><span class="hll"><span class="w">        </span><span class="nt">oxipng_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">oxipng</span>
+</span></span><span id="__span-25-15"><a href="#__codelineno-25-15" id="__codelineno-25-15" name="__codelineno-25-15"></a><span class="hll"><span class="w">        </span><span class="nt">oxipng_max_compression</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span></span><span id="__span-25-16"><a href="#__codelineno-25-16" id="__codelineno-25-16" name="__codelineno-25-16"></a><span class="hll"><span class="w">        </span><span class="nt">strip</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </span></span></code></pre>
 </div>
 <p>
 Above you can find all possible settings with their default values. You don't have to provide them. Just use them if you want to change some settings. The description of the meaning of given setting, you can find below.
 </p>
+<details class="settings">
+<summary>
+<a href="#+minifier.png.cache_enabled" id="+minifier.png.cache_enabled">
+cache_enabled
+</a>
+</summary>
+<p>
+Control if caching mechanism is enabled.
+</p>
+</details>
 <details class="settings">
 <summary>
 <a href="#+minifier.png.enabled" id="+minifier.png.enabled">
@@ -1648,6 +1712,26 @@ enabled_on_serve
 </summary>
 <p>
 Control if PNG minifier is enabled while page is being served locally (mostly used for content creation).
+</p>
+</details>
+<details class="settings">
+<summary>
+<a href="#+minifier.png.exclude" id="+minifier.png.exclude">
+exclude
+</a>
+</summary>
+<p>
+Defines a list of exclusion patterns for files or directories that will not be minified.
+</p>
+</details>
+<details class="settings">
+<summary>
+<a href="#+minifier.png.extensions" id="+minifier.png.extensions">
+exclude
+</a>
+</summary>
+<p>
+Defines a list of file extensions that will be minified.
 </p>
 </details>
 <details class="settings">
@@ -1810,15 +1894,28 @@ default settings of used SVGO plugins
 <pre><span></span><code><span id="__span-26-1"><a href="#__codelineno-26-1" id="__codelineno-26-1" name="__codelineno-26-1"></a><span class="nt">plugins</span><span class="p">:</span>
 </span><span id="__span-26-2"><a href="#__codelineno-26-2" id="__codelineno-26-2" name="__codelineno-26-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pub-minifier</span><span class="p">:</span>
 </span><span id="__span-26-3"><a href="#__codelineno-26-3" id="__codelineno-26-3" name="__codelineno-26-3"></a><span class="hll"><span class="w">    </span><span class="nt">svg</span><span class="p">:</span>
-</span></span><span id="__span-26-4"><a href="#__codelineno-26-4" id="__codelineno-26-4" name="__codelineno-26-4"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">enabled = true</span>
-</span></span><span id="__span-26-5"><a href="#__codelineno-26-5" id="__codelineno-26-5" name="__codelineno-26-5"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">enabled_on_serve = false</span>
-</span></span><span id="__span-26-6"><a href="#__codelineno-26-6" id="__codelineno-26-6" name="__codelineno-26-6"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">svgo_path = svgo</span>
-</span></span><span id="__span-26-7"><a href="#__codelineno-26-7" id="__codelineno-26-7" name="__codelineno-26-7"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">multipass = true</span>
+</span></span><span id="__span-26-4"><a href="#__codelineno-26-4" id="__codelineno-26-4" name="__codelineno-26-4"></a><span class="hll"><span class="w">        </span><span class="nt">cache_enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span></span><span id="__span-26-5"><a href="#__codelineno-26-5" id="__codelineno-26-5" name="__codelineno-26-5"></a><span class="hll"><span class="w">        </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span></span><span id="__span-26-6"><a href="#__codelineno-26-6" id="__codelineno-26-6" name="__codelineno-26-6"></a><span class="hll"><span class="w">        </span><span class="nt">enabled_on_serve</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span></span><span id="__span-26-7"><a href="#__codelineno-26-7" id="__codelineno-26-7" name="__codelineno-26-7"></a><span class="hll"><span class="w">        </span><span class="nt">exclude</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+</span></span><span id="__span-26-8"><a href="#__codelineno-26-8" id="__codelineno-26-8" name="__codelineno-26-8"></a><span class="hll"><span class="w">        </span><span class="nt">extensions</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">".[sS][vV][gG]"</span><span class="p p-Indicator">]</span>
+</span></span><span id="__span-26-9"><a href="#__codelineno-26-9" id="__codelineno-26-9" name="__codelineno-26-9"></a><span class="hll"><span class="w">        </span><span class="nt">svgo_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">svgo</span>
+</span></span><span id="__span-26-10"><a href="#__codelineno-26-10" id="__codelineno-26-10" name="__codelineno-26-10"></a><span class="hll"><span class="w">        </span><span class="nt">multipass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </span></span></code></pre>
 </div>
 <p>
 Above you can find all possible settings with their default values. You don't have to provide them. Just use them if you want to change some settings. The description of the meaning of given setting, you can find below.
 </p>
+<details class="settings">
+<summary>
+<a href="#+minifier.svg.cache_enabled" id="+minifier.svg.cache_enabled">
+cache_enabled
+</a>
+</summary>
+<p>
+Control if caching mechanism is enabled.
+</p>
+</details>
 <details class="settings">
 <summary>
 <a href="#+minifier.svg.enabled" id="+minifier.svg.enabled">
@@ -1837,6 +1934,26 @@ enabled_on_serve
 </summary>
 <p>
 Control if SVG minifier is enabled while page is being served locally (mostly used for content creation).
+</p>
+</details>
+<details class="settings">
+<summary>
+<a href="#+minifier.svg.exclude" id="+minifier.svg.exclude">
+exclude
+</a>
+</summary>
+<p>
+Defines a list of exclusion patterns for files or directories that will not be minified.
+</p>
+</details>
+<details class="settings">
+<summary>
+<a href="#+minifier.svg.extensions" id="+minifier.svg.extensions">
+exclude
+</a>
+</summary>
+<p>
+Defines a list of file extensions that will be minified.
 </p>
 </details>
 <details class="settings">
@@ -1903,26 +2020,39 @@ Using this tool reduces HTML file size by up to 30%. You can always try to chang
 <pre><span></span><code><span id="__span-27-1"><a href="#__codelineno-27-1" id="__codelineno-27-1" name="__codelineno-27-1"></a><span class="nt">plugins</span><span class="p">:</span>
 </span><span id="__span-27-2"><a href="#__codelineno-27-2" id="__codelineno-27-2" name="__codelineno-27-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pub-minifier</span><span class="p">:</span>
 </span><span id="__span-27-3"><a href="#__codelineno-27-3" id="__codelineno-27-3" name="__codelineno-27-3"></a><span class="hll"><span class="w">    </span><span class="nt">html</span><span class="p">:</span>
-</span></span><span id="__span-27-4"><a href="#__codelineno-27-4" id="__codelineno-27-4" name="__codelineno-27-4"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">enabled = true</span>
-</span></span><span id="__span-27-5"><a href="#__codelineno-27-5" id="__codelineno-27-5" name="__codelineno-27-5"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">enabled_on_serve = false</span>
-</span></span><span id="__span-27-6"><a href="#__codelineno-27-6" id="__codelineno-27-6" name="__codelineno-27-6"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">postcss_path = postcss</span>
-</span></span><span id="__span-27-7"><a href="#__codelineno-27-7" id="__codelineno-27-7" name="__codelineno-27-7"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">case_sensitive = true</span>
-</span></span><span id="__span-27-8"><a href="#__codelineno-27-8" id="__codelineno-27-8" name="__codelineno-27-8"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">minify_css = true</span>
-</span></span><span id="__span-27-9"><a href="#__codelineno-27-9" id="__codelineno-27-9" name="__codelineno-27-9"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">minify_js = true</span>
-</span></span><span id="__span-27-10"><a href="#__codelineno-27-10" id="__codelineno-27-10" name="__codelineno-27-10"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">remove_comments = true</span>
-</span></span><span id="__span-27-11"><a href="#__codelineno-27-11" id="__codelineno-27-11" name="__codelineno-27-11"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">remove_tag_whitespace = false</span>
-</span></span><span id="__span-27-12"><a href="#__codelineno-27-12" id="__codelineno-27-12" name="__codelineno-27-12"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">collapse_whitespace = true</span>
-</span></span><span id="__span-27-13"><a href="#__codelineno-27-13" id="__codelineno-27-13" name="__codelineno-27-13"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">conservative_collapse = true</span>
-</span></span><span id="__span-27-14"><a href="#__codelineno-27-14" id="__codelineno-27-14" name="__codelineno-27-14"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">collapse_boolean_attributes = true</span>
-</span></span><span id="__span-27-15"><a href="#__codelineno-27-15" id="__codelineno-27-15" name="__codelineno-27-15"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">preserve_line_breaks = true</span>
-</span></span><span id="__span-27-16"><a href="#__codelineno-27-16" id="__codelineno-27-16" name="__codelineno-27-16"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">sort_attributes = true</span>
-</span></span><span id="__span-27-17"><a href="#__codelineno-27-17" id="__codelineno-27-17" name="__codelineno-27-17"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">sort_class_name = true</span>
-</span></span><span id="__span-27-18"><a href="#__codelineno-27-18" id="__codelineno-27-18" name="__codelineno-27-18"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">max_line_length = 1024</span>
+</span></span><span id="__span-27-4"><a href="#__codelineno-27-4" id="__codelineno-27-4" name="__codelineno-27-4"></a><span class="hll"><span class="w">        </span><span class="nt">cache_enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span></span><span id="__span-27-5"><a href="#__codelineno-27-5" id="__codelineno-27-5" name="__codelineno-27-5"></a><span class="hll"><span class="w">        </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span></span><span id="__span-27-6"><a href="#__codelineno-27-6" id="__codelineno-27-6" name="__codelineno-27-6"></a><span class="hll"><span class="w">        </span><span class="nt">enabled_on_serve</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span></span><span id="__span-27-7"><a href="#__codelineno-27-7" id="__codelineno-27-7" name="__codelineno-27-7"></a><span class="hll"><span class="w">        </span><span class="nt">exclude</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+</span></span><span id="__span-27-8"><a href="#__codelineno-27-8" id="__codelineno-27-8" name="__codelineno-27-8"></a><span class="hll"><span class="w">        </span><span class="nt">extensions</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">".[hH][tT][mM]"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">".[hH][tT][mM][lL]"</span><span class="p p-Indicator">]</span>
+</span></span><span id="__span-27-9"><a href="#__codelineno-27-9" id="__codelineno-27-9" name="__codelineno-27-9"></a><span class="hll"><span class="w">        </span><span class="nt">postcss_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postcss</span>
+</span></span><span id="__span-27-10"><a href="#__codelineno-27-10" id="__codelineno-27-10" name="__codelineno-27-10"></a><span class="hll"><span class="w">        </span><span class="nt">case_sensitive</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span></span><span id="__span-27-11"><a href="#__codelineno-27-11" id="__codelineno-27-11" name="__codelineno-27-11"></a><span class="hll"><span class="w">        </span><span class="nt">minify_css</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span></span><span id="__span-27-12"><a href="#__codelineno-27-12" id="__codelineno-27-12" name="__codelineno-27-12"></a><span class="hll"><span class="w">        </span><span class="nt">minify_js</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span></span><span id="__span-27-13"><a href="#__codelineno-27-13" id="__codelineno-27-13" name="__codelineno-27-13"></a><span class="hll"><span class="w">        </span><span class="nt">remove_comments</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span></span><span id="__span-27-14"><a href="#__codelineno-27-14" id="__codelineno-27-14" name="__codelineno-27-14"></a><span class="hll"><span class="w">        </span><span class="nt">remove_tag_whitespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span></span><span id="__span-27-15"><a href="#__codelineno-27-15" id="__codelineno-27-15" name="__codelineno-27-15"></a><span class="hll"><span class="w">        </span><span class="nt">collapse_whitespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span></span><span id="__span-27-16"><a href="#__codelineno-27-16" id="__codelineno-27-16" name="__codelineno-27-16"></a><span class="hll"><span class="w">        </span><span class="nt">conservative_collapse</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span></span><span id="__span-27-17"><a href="#__codelineno-27-17" id="__codelineno-27-17" name="__codelineno-27-17"></a><span class="hll"><span class="w">        </span><span class="nt">collapse_boolean_attributes</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span></span><span id="__span-27-18"><a href="#__codelineno-27-18" id="__codelineno-27-18" name="__codelineno-27-18"></a><span class="hll"><span class="w">        </span><span class="nt">preserve_line_breaks</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span></span><span id="__span-27-19"><a href="#__codelineno-27-19" id="__codelineno-27-19" name="__codelineno-27-19"></a><span class="hll"><span class="w">        </span><span class="nt">sort_attributes</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span></span><span id="__span-27-20"><a href="#__codelineno-27-20" id="__codelineno-27-20" name="__codelineno-27-20"></a><span class="hll"><span class="w">        </span><span class="nt">sort_class_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span></span><span id="__span-27-21"><a href="#__codelineno-27-21" id="__codelineno-27-21" name="__codelineno-27-21"></a><span class="hll"><span class="w">        </span><span class="nt">max_line_length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1024</span>
 </span></span></code></pre>
 </div>
 <p>
 Above you can find all possible settings with their default values. You don't have to provide them. Just use them if you want to change some settings. The description of the meaning of given setting, you can find below.
 </p>
+<details class="settings">
+<summary>
+<a href="#+minifier.html.cache_enabled" id="+minifier.html.cache_enabled">
+cache_enabled
+</a>
+</summary>
+<p>
+Control if caching mechanism is enabled.
+</p>
+</details>
 <details class="settings">
 <summary>
 <a href="#+minifier.html.enabled" id="+minifier.html.enabled">
@@ -1941,6 +2071,26 @@ enabled_on_serve
 </summary>
 <p>
 Control if HTML minifier is enabled while page is being served locally (mostly used for content creation).
+</p>
+</details>
+<details class="settings">
+<summary>
+<a href="#+minifier.html.exclude" id="+minifier.html.exclude">
+exclude
+</a>
+</summary>
+<p>
+Defines a list of exclusion patterns for files or directories that will not be minified.
+</p>
+</details>
+<details class="settings">
+<summary>
+<a href="#+minifier.html.extensions" id="+minifier.html.extensions">
+exclude
+</a>
+</summary>
+<p>
+Defines a list of file extensions that will be minified.
 </p>
 </details>
 <details class="settings">
@@ -2173,15 +2323,28 @@ default settings of cssnano
 <pre><span></span><code><span id="__span-28-1"><a href="#__codelineno-28-1" id="__codelineno-28-1" name="__codelineno-28-1"></a><span class="nt">plugins</span><span class="p">:</span>
 </span><span id="__span-28-2"><a href="#__codelineno-28-2" id="__codelineno-28-2" name="__codelineno-28-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pub-minifier</span><span class="p">:</span>
 </span><span id="__span-28-3"><a href="#__codelineno-28-3" id="__codelineno-28-3" name="__codelineno-28-3"></a><span class="hll"><span class="w">    </span><span class="nt">css</span><span class="p">:</span>
-</span></span><span id="__span-28-4"><a href="#__codelineno-28-4" id="__codelineno-28-4" name="__codelineno-28-4"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">enabled = true</span>
-</span></span><span id="__span-28-5"><a href="#__codelineno-28-5" id="__codelineno-28-5" name="__codelineno-28-5"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">enabled_on_serve = false</span>
-</span></span><span id="__span-28-6"><a href="#__codelineno-28-6" id="__codelineno-28-6" name="__codelineno-28-6"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">postcss_path = postcss</span>
-</span></span><span id="__span-28-7"><a href="#__codelineno-28-7" id="__codelineno-28-7" name="__codelineno-28-7"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">skip_minified = true</span>
+</span></span><span id="__span-28-4"><a href="#__codelineno-28-4" id="__codelineno-28-4" name="__codelineno-28-4"></a><span class="hll"><span class="w">        </span><span class="nt">cache_enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span></span><span id="__span-28-5"><a href="#__codelineno-28-5" id="__codelineno-28-5" name="__codelineno-28-5"></a><span class="hll"><span class="w">        </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span></span><span id="__span-28-6"><a href="#__codelineno-28-6" id="__codelineno-28-6" name="__codelineno-28-6"></a><span class="hll"><span class="w">        </span><span class="nt">enabled_on_serve</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span></span><span id="__span-28-7"><a href="#__codelineno-28-7" id="__codelineno-28-7" name="__codelineno-28-7"></a><span class="hll"><span class="w">        </span><span class="nt">exclude</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+</span></span><span id="__span-28-8"><a href="#__codelineno-28-8" id="__codelineno-28-8" name="__codelineno-28-8"></a><span class="hll"><span class="w">        </span><span class="nt">extensions</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">".[cC][sS][sS]"</span><span class="p p-Indicator">]</span>
+</span></span><span id="__span-28-9"><a href="#__codelineno-28-9" id="__codelineno-28-9" name="__codelineno-28-9"></a><span class="hll"><span class="w">        </span><span class="nt">postcss_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postcss</span>
+</span></span><span id="__span-28-10"><a href="#__codelineno-28-10" id="__codelineno-28-10" name="__codelineno-28-10"></a><span class="hll"><span class="w">        </span><span class="nt">skip_minified</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </span></span></code></pre>
 </div>
 <p>
 Above you can find all possible settings with their default values. You don't have to provide them. Just use them if you want to change some settings. The description of the meaning of given setting, you can find below.
 </p>
+<details class="settings">
+<summary>
+<a href="#+minifier.css.cache_enabled" id="+minifier.css.cache_enabled">
+cache_enabled
+</a>
+</summary>
+<p>
+Control if caching mechanism is enabled.
+</p>
+</details>
 <details class="settings">
 <summary>
 <a href="#+minifier.css.enabled" id="+minifier.css.enabled">
@@ -2200,6 +2363,26 @@ enabled_on_serve
 </summary>
 <p>
 Control if CSS minifier is enabled while page is being served locally (mostly used for content creation).
+</p>
+</details>
+<details class="settings">
+<summary>
+<a href="#+minifier.css.exclude" id="+minifier.css.exclude">
+exclude
+</a>
+</summary>
+<p>
+Defines a list of exclusion patterns for files or directories that will not be minified.
+</p>
+</details>
+<details class="settings">
+<summary>
+<a href="#+minifier.css.extensions" id="+minifier.css.extensions">
+exclude
+</a>
+</summary>
+<p>
+Defines a list of file extensions that will be minified.
 </p>
 </details>
 <details class="settings">
@@ -2266,15 +2449,28 @@ plugin doesn't allow changing the default settings.
 <pre><span></span><code><span id="__span-29-1"><a href="#__codelineno-29-1" id="__codelineno-29-1" name="__codelineno-29-1"></a><span class="nt">plugins</span><span class="p">:</span>
 </span><span id="__span-29-2"><a href="#__codelineno-29-2" id="__codelineno-29-2" name="__codelineno-29-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pub-minifier</span><span class="p">:</span>
 </span><span id="__span-29-3"><a href="#__codelineno-29-3" id="__codelineno-29-3" name="__codelineno-29-3"></a><span class="hll"><span class="w">    </span><span class="nt">js</span><span class="p">:</span>
-</span></span><span id="__span-29-4"><a href="#__codelineno-29-4" id="__codelineno-29-4" name="__codelineno-29-4"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">enabled = true</span>
-</span></span><span id="__span-29-5"><a href="#__codelineno-29-5" id="__codelineno-29-5" name="__codelineno-29-5"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">enabled_on_serve = false</span>
-</span></span><span id="__span-29-6"><a href="#__codelineno-29-6" id="__codelineno-29-6" name="__codelineno-29-6"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">uglifyjs_path = uglifyjs</span>
-</span></span><span id="__span-29-7"><a href="#__codelineno-29-7" id="__codelineno-29-7" name="__codelineno-29-7"></a><span class="hll"><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">skip_minified = true</span>
+</span></span><span id="__span-29-4"><a href="#__codelineno-29-4" id="__codelineno-29-4" name="__codelineno-29-4"></a><span class="hll"><span class="w">        </span><span class="nt">cache_enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span></span><span id="__span-29-5"><a href="#__codelineno-29-5" id="__codelineno-29-5" name="__codelineno-29-5"></a><span class="hll"><span class="w">        </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span></span><span id="__span-29-6"><a href="#__codelineno-29-6" id="__codelineno-29-6" name="__codelineno-29-6"></a><span class="hll"><span class="w">        </span><span class="nt">enabled_on_serve</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span></span><span id="__span-29-7"><a href="#__codelineno-29-7" id="__codelineno-29-7" name="__codelineno-29-7"></a><span class="hll"><span class="w">        </span><span class="nt">exclude</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+</span></span><span id="__span-29-8"><a href="#__codelineno-29-8" id="__codelineno-29-8" name="__codelineno-29-8"></a><span class="hll"><span class="w">        </span><span class="nt">extensions</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">".[jJ][sS]"</span><span class="p p-Indicator">]</span>
+</span></span><span id="__span-29-9"><a href="#__codelineno-29-9" id="__codelineno-29-9" name="__codelineno-29-9"></a><span class="hll"><span class="w">        </span><span class="nt">uglifyjs_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uglifyjs</span>
+</span></span><span id="__span-29-10"><a href="#__codelineno-29-10" id="__codelineno-29-10" name="__codelineno-29-10"></a><span class="hll"><span class="w">        </span><span class="nt">skip_minified</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </span></span></code></pre>
 </div>
 <p>
 Above you can find all possible settings with their default values. You don't have to provide them. Just use them if you want to change some settings. The description of the meaning of given setting, you can find below.
 </p>
+<details class="settings">
+<summary>
+<a href="#+minifier.js.cache_enabled" id="+minifier.js.cache_enabled">
+cache_enabled
+</a>
+</summary>
+<p>
+Control if caching mechanism is enabled.
+</p>
+</details>
 <details class="settings">
 <summary>
 <a href="#+minifier.js.enabled" id="+minifier.js.enabled">
@@ -2293,6 +2489,26 @@ enabled_on_serve
 </summary>
 <p>
 Control if JS minifier is enabled while page is being served locally (mostly used for content creation).
+</p>
+</details>
+<details class="settings">
+<summary>
+<a href="#+minifier.js.exclude" id="+minifier.js.exclude">
+exclude
+</a>
+</summary>
+<p>
+Defines a list of exclusion patterns for files or directories that will not be minified.
+</p>
+</details>
+<details class="settings">
+<summary>
+<a href="#+minifier.js.extensions" id="+minifier.js.extensions">
+exclude
+</a>
+</summary>
+<p>
+Defines a list of file extensions that will be minified.
 </p>
 </details>
 <details class="settings">
@@ -2347,6 +2563,20 @@ plugin -
 </svg>
 </span>
 v0.4.0),
+</p>
+<p></p>
+</details>
+<details class="backlink">
+<summary>
+None
+</summary>
+<p>
+</p><p class="obsidian_backlink">
+This release adds some more control over
+<a href="https://mkusz.github.io/mkdocs-publisher/blog/v120/#02-setup03-seo-and-sharing02-setting-up-minifier">
+minifier
+</a>
+plugin by adding the following settings:
 </p>
 <p></p>
 </details>

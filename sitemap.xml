@@ -22,7 +22,7 @@
     </url>
     <url>
          <loc>https://mkusz.github.io/mkdocs-publisher/setup/general/pub-obsidian/</loc>
-         <lastmod>2023-10-03</lastmod>
+         <lastmod>2023-10-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
@@ -32,7 +32,7 @@
     </url>
     <url>
          <loc>https://mkusz.github.io/mkdocs-publisher/setup/seo-and-sharing/pub-minifier/</loc>
-         <lastmod>2023-10-03</lastmod>
+         <lastmod>2023-10-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
@@ -87,12 +87,17 @@
     </url>
     <url>
          <loc>https://mkusz.github.io/mkdocs-publisher/blog/v111/</loc>
-         <lastmod>2023-10-10</lastmod>
+         <lastmod>2023-10-11</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://mkusz.github.io/mkdocs-publisher/blog/v120/</loc>
+         <lastmod>2023-10-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mkusz.github.io/mkdocs-publisher/development/changelog/</loc>
-         <lastmod>2023-10-10</lastmod>
+         <lastmod>2023-10-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
@@ -102,12 +107,12 @@
     </url>
     <url>
          <loc>https://mkusz.github.io/mkdocs-publisher/development/versioning/</loc>
-         <lastmod>2023-10-03</lastmod>
+         <lastmod>2023-10-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mkusz.github.io/mkdocs-publisher/development/other/backlog/</loc>
-         <lastmod>2023-10-03</lastmod>
+         <lastmod>2023-10-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>

@@ -655,41 +655,21 @@ where:
 <code>
 MAJOR
 </code>
-number is increased when a new braking API change is introduced,
+number is increased when a new braking changes are introduced, for example some settings are removed or MkDocs is updated, and this project has to adjust to those changes.
 </li>
 <li>
 <code>
 MINOR
 </code>
-number is increased when new functionality is introduced without API changes,
+number is increased when new functionality is introduced without breaking changes or a new plugin is added.
 </li>
 <li>
 <code>
 PATCH
 </code>
-number is increased when there is no new functionality and usually is used for bug fixes.
+number is increased when there is no new functionality and usually is used for bug fixes. It can also be used for
 </li>
 </ul>
-<p>
-Because this package is based on MkDocs API, the only reason to change
-<code>
-MAJOR
-</code>
-number would be to break compatibility with an older version of MkDocs or when this package will go out of beta stage.
-</p>
-<p>
-Since this package contains various sets of plugins,
-<code>
-MINOR
-</code>
-number will be changed when a new plugin is introduced or an existing one changes significantly (new config options, new functionality added, etc.).
-</p>
-<p>
-<code>
-PATCH
-</code>
-number will be used mostly for bug fixes and smaller internal changes like documentation modifications, code refactor or unit testing changes.
-</p>
 </article>
 </div>
 <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
