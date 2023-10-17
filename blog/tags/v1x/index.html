@@ -7,7 +7,7 @@
 <meta content="Maciej 'maQ' Kusz" name="author">
 <link href="https://mkusz.github.io/mkdocs-publisher/blog/tags/v1x/" rel="canonical">
 <link href="../v0x/" rel="prev">
-<link href="../../v111/" rel="next">
+<link href="../../v120/" rel="next">
 <link href="../../../publisher_icon.png" rel="icon">
 <meta content="mkdocs-1.5.3, mkdocs-material-9.4.5" name="generator">
 <title>
@@ -32,7 +32,7 @@ Tag - v1.x - Publisher for MkDocs
 <label class="md-overlay" for="__drawer">
 </label>
 <div data-md-component="skip">
-<a href="#v111-20231010" class="md-skip">
+<a href="#v120-2023-10-17" class="md-skip">
 Skip to content
 </a>
 </div>
@@ -515,6 +515,11 @@ Table of contents
 </label>
 <ul class="md-nav__list" data-md-scrollfix="" data-md-component="toc">
 <li class="md-nav__item">
+<a href="#v120-2023-10-17" class="md-nav__link">
+v1.2.0 - 2023-10-17
+</a>
+</li>
+<li class="md-nav__item">
 <a href="#v111-20231010" class="md-nav__link">
 v1.1.1 - 2023.10.10
 </a>
@@ -636,6 +641,11 @@ Table of contents
 </label>
 <ul class="md-nav__list" data-md-scrollfix="" data-md-component="toc">
 <li class="md-nav__item">
+<a href="#v120-2023-10-17" class="md-nav__link">
+v1.2.0 - 2023-10-17
+</a>
+</li>
+<li class="md-nav__item">
 <a href="#v111-20231010" class="md-nav__link">
 v1.1.1 - 2023.10.10
 </a>
@@ -660,6 +670,134 @@ v1.0.0 - 2023-06-13
 <h1>
 v1.x
 </h1>
+<h2 id="v120-2023-10-17">
+<a href="https://mkusz.github.io/mkdocs-publisher/blog/v120/">
+v1.2.0 - 2023-10-17
+</a>
+<a href="#v120-2023-10-17" class="headerlink" title="Anchor link to this section for reference">
+¶
+</a>
+</h2>
+<div class="post-extra">
+<div class="col">
+<p class="post-date">
+2023-10-17 16:16:39
+</p>
+</div>
+<div class="col">
+<a href="https://mkusz.github.io/mkdocs-publisher/blog/tags/v1.x/">
+#v1.x
+</a>
+</div>
+</div>
+<p>
+This release adds some more control over
+<a href="../../../setup/seo-and-sharing/pub-minifier/" id="02-setup03-seo-and-sharing02-setting-up-minifier">
+minifier
+</a>
+plugin by adding the following settings:
+</p>
+<ul>
+<li>
+<code>
+cache_enabled
+</code>
+- controls if cache is enabled both globally and per file type (cache is enabled by default),
+</li>
+<li>
+<code>
+exclude
+</code>
+- list of files and/or directories that are excluded from minification both globally and per file type (by default list of exclusion is empty),
+</li>
+<li>
+<code>
+extensions
+</code>
+- defines file extensions for each file type.
+</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">
+Exclusion file name pattern
+</p>
+<p>
+<code>
+exclude
+</code>
+setting allows defining exact match like
+<code>
+some_file.jpg
+</code>
+or by pattern like
+<code>
+some_jpg_files_in_dir/some*.jpg
+</code>
+. To match all subdirectories, you have to use
+<code>
+**
+</code>
+as a pattern, for example
+<code>
+match_all_files_in_subdirs/**/*
+</code>
+.
+</p>
+<p>
+Use it with caution, since using this pattern can be time-consuming (more information can be found at
+<a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path.glob">
+this link
+</a>
+).
+</p>
+</div>
+<p>
+The
+<a href="../../../setup/general/pub-obsidian/" id="02-setup02-general03-setting-up-obsidian">
+obsidian
+</a>
+plugin, now supports:
+</p>
+<ul>
+<li>
+<a href="https://help.obsidian.md/Editing+and+formatting/Basic+formatting+syntax#Comments">
+comments
+</a>
+,
+</li>
+<li>
+<a href="https://help.obsidian.md/Editing+and+formatting/Advanced+formatting+syntax#Math">
+MathJax
+</a>
+- right now you need to
+<a href="https://squidfunk.github.io/mkdocs-material/reference/math/#mathjax">
+configure it manually
+</a>
+, in the future it will be done automatically when this plugin is enabled,
+</li>
+<li>
+<a href="https://help.obsidian.md/Editing+and+formatting/Basic+formatting+syntax#Lists">
+mixed type lists
+</a>
+- right now you need to
+<a href="https://python-markdown.github.io/extensions/sane_lists/">
+configure it manually
+</a>
+, in the future it will be done automatically when this plugin is enabled.
+</li>
+</ul>
+<p>
+I have also added some issue templates on project repository, so if you find some issue or have a future request, fell free to report a
+<a href="https://github.com/mkusz/mkdocs-publisher/issues/new/choose">
+new issue
+</a>
+.
+</p>
+<div class="post-link">
+<a href="https://mkusz.github.io/mkdocs-publisher/blog/v120/" title="{ post.title }">
+Read more
+</a>
+</div>
 <h2 id="v111-20231010">
 <a href="https://mkusz.github.io/mkdocs-publisher/blog/v111/">
 v1.1.1 - 2023.10.10
@@ -1074,13 +1212,13 @@ v0.x
 </div>
 </div>
 </a>
-<a href="../../v111/" class="md-footer__link md-footer__link--next" aria-label="Next: v1.1.1 - 2023.10.10">
+<a href="../../v120/" class="md-footer__link md-footer__link--next" aria-label="Next: v1.2.0 - 2023-10-17">
 <div class="md-footer__title">
 <span class="md-footer__direction">
 Next
 </span>
 <div class="md-ellipsis">
-v1.1.1 - 2023.10.10
+v1.2.0 - 2023-10-17
 </div>
 </div>
 <div class="md-icon md-footer__button">
