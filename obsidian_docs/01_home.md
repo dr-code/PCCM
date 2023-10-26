@@ -9,7 +9,7 @@ categories:
   - start
 hide: [toc, navigation]
 ---
-# Publisher for MkDocs
+# Publisher for PCCM
 
 [![PyPI version](https://img.shields.io/pypi/v/mkdocs-publisher?logo=pypi&style=plastic)](https://pypi.org/project/mkdocs-publisher/)
 [![License type](https://img.shields.io/pypi/l/mkdocs-publisher?logo=pypi&style=plastic)](https://opensource.org/license/bsd-2-clause/)

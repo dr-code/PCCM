@@ -1,15 +1,15 @@
-site_name: Publisher for MkDocs
-site_url: https://mkusz.github.io/mkdocs-publisher
-site_author: Maciej 'maQ' Kusz
-site_description: Publishing plugin for MkDocs
+site_name: PCCM
+site_url: http://pulm.icu/pccm
+site_author: RS
+site_description: All things PCCM
 copyright: >
-  &copy; 2023 Maciej 'maQ' Kusz
+  &copy; 2023 pulmcrit
 
-repo_name: mkusz/mkdocs-publisher
-repo_url: https://github.com/mkusz/mkdocs-publisher
-edit_uri: edit/main/mkdocs_publisher_docs
+repo_name: dr-code/pccm
+repo_url: https://github.com/dr-code/pccm
+edit_uri: edit/main/obsidian_docs
 
-docs_dir: mkdocs_publisher_docs
+docs_dir: obsidian_docs
 site_dir: docs
 
 use_directory_urls: true
@@ -18,8 +18,8 @@ strict: true
 dev_addr: 127.0.0.1:8666
 
 extra:
-  homepage: https://mkusz.github.io/mkdocs-publisher
-
+  homepage: https://pulm.icu/pccm
+  
 extra_css:
   - assets/stylesheets/publisher.css
 
